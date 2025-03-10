@@ -14,7 +14,7 @@
                         <li><a href="#">Contact</a></li>
                         <li>
                             <div class="cart">
-                                <span>0</span>
+                                <span>{{ccount}}</span>
                                 <img src="assets/cart.png" alt="Shopping Cart">
                             </div>
                         </li>
@@ -29,21 +29,21 @@
                     <div class="product-item">
                         <img src="assets/gta6.jpeg" alt="Grand Theft Auto 6">
                         <h3>Grand Theft Auto 6</h3>
-                        <p>$99.99</p>
-                        <button>Add to Cart</button>
+                        <p value="99.99">$99.99</p>
+                        <button (click)="addToCart(getProduct(1))">Add to Cart</button>
                     </div>
                     <div class="product-item">
                         <img src="assets/spiderman2.jpg" alt="Spiderman 2">
                         <h3>Spiderman 2</h3>
                         <p style="text-decoration-line: line-through; text-decoration-style: wavy; text-decoration-thickness: 4px; margin-block-end: 10px;">$49.99</p>
-                        <p style="margin-block-start: 0; margin-block-end: 5px;">$39.99</p>
-                        <button>Add to Cart</button>
+                        <p value="39.99" style="margin-block-start: 0; margin-block-end: 5px;">$39.99</p>
+                        <button (click)="addToCart(getProduct(2))">Add to Cart</button>
                     </div>
                     <div class="product-item">
                         <img src="assets/bo6.jpg" alt="Black Ops 6">
                         <h3>Black Ops 6</h3>
-                        <p>$39.99</p>
-                        <button>Add to Cart</button>
+                        <p value="39.99">$39.99</p>
+                        <button (click)="addToCart(getProduct(3));">Add to Cart</button>
                     </div>
                 </div>
             </section>
