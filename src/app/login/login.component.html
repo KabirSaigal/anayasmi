@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Anayasmi</title>
+    <link rel="stylesheet" href="./login.component.css">
+    <script src="./login.component.js" defer></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">Anayasmi</div>
+        <div class="input-group">
+            <input type="email" id="email" placeholder="Email">
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password">
+        </div>
+        <button class="login-button" (click)="login()">Login</button>
+    </div>
+</body>
+</html>
