@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
-    { path: 'dashboard', component: DashboardComponent }
+    { path: 'dashboard', component: DashboardComponent },
+    { path: '**', redirectTo: '' }
 ];
 
 bootstrapApplication(AppComponent, {
