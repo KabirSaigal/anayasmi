@@ -1,3 +1,8 @@
+
+# This is a Project done with angular during my Internship at Anayasmi.
+## If you would like to try it our the username and password is admin admin
+
+
 # Anayasmi
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
