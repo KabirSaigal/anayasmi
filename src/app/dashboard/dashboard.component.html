@@ -13,7 +13,7 @@
                         <li><a href="#">Products</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Contact</a></li>
-                        <li *ngIf="isAdmin"><a href="">Admin Controls</a></li>
+                        <li *ngIf="isAdmin"><a (click)="goToCart();">Admin Controls</a></li>
                         <li>
                             <div class="cart">
                                 <span>{{ccount}}</span>
@@ -47,15 +47,22 @@
                     </div>
                 </div>
             </section>
-            <div class="cart-panel" [class.open]="isCartPanelOpen" clickOutside (clickOutside) ="toggleCartPanel()">
+            <div class="cart-panel" [class.open]="isCartPanelOpen">
+                <button class="back-button" (click)="closeCartPanel();"><img class="back-img" src="assets/left.png"></button>
                 <h2>Cart</h2>
-                <div *ngif="ccount === 0">
-                    <p>Your cart is empty.</p>
+                <div *ngIf="ccount === 0">
+                    <p class="empty-cart">Your cart is empty.</p>
                 </div>
-                <div *ngif="ccount > 0">
+                <div *ngIf="ccount > 0">
                     <div class="cart-item" *ngFor="let item of cart">
                         <h3>{{ item.name }}</h3>
                         <p>Price: ${{ item.price }}</p>
+                    </div>
+                    <div class="cart-total">
+                        <h4>Total Amount: ${{ total() }}</h4>
+                    </div>
+                    <div class="cart-checkout-btn">
+                        Checkout
                     </div>
                 </div>
             </div>

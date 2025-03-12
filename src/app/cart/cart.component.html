@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div *ngIf="showNav">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Admin Controls</a>
+        </div>
+        </nav>
+        <div class="cart">
+            <img src="assets/cart.png" alt="Cart">
+            <span>3</span>
+        </div>
+        <button>Logout</button>
+    </header>
+    <div class="products">
+        <div class="product">
+            <img class="product-img" src="assets/gta6.jpeg" alt="Grand Theft Auto 6">
+            <h3>Grand Theft Auto 6</h3>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img class="product-img"  src="assets/spiderman2.jpg" alt="Spiderman 2">
+            <h3>Spiderman 2</h3>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <img class="product-img"  src="assets/bo6.jpg" alt="Black Ops 6">
+            <h3>Black Ops 6</h3>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+    <footer>
+        &copy; 2023 Your Company
+    </footer>
+</body>
+</html>

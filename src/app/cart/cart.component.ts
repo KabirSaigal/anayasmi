@@ -8,9 +8,10 @@ interface Product {
   price: number;
 }
 
+
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
@@ -24,8 +25,19 @@ export class CartComponent {
     }
   }
 
+
+showNav = true;
+
   ngOnInit(): void {
     console.log("Cart items:", this.cart);
+    console.log(screen.availWidth);
+    const updateNavVisibility = () => {
+      this.showNav = screen.width >= 600;
+    };
+
+    updateNavVisibility();
+
+    window.addEventListener('resize', updateNavVisibility);
   }
 
 }
