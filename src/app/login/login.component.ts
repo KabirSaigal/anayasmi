@@ -43,6 +43,12 @@ export class LoginComponent {
     role: ''
   }
 
+  ngOnInit() {
+    const localArray = [];
+      localArray.push(this.admin);
+      localStorage.setItem('users', JSON.stringify(localArray));
+  }
+
   register(): void {
     const isLocalData = localStorage.getItem('users');
     if(isLocalData != null) {
@@ -86,7 +92,7 @@ export class LoginComponent {
           this.currentUser = userExists;
         }
         localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-        this.router.navigateByUrl('dashboard');
+        this.router.navigate(['/dashboard']);
         AuthGuard.prototype.login();
       } else {
         alert('Invalid credentials');
