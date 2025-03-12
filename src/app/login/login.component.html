@@ -8,15 +8,35 @@
     <script src="./login.component.js" defer></script>
 </head>
 <body>
-    <div class="login-container">
+    <form>
+    <div class="login-container" *ngIf="!showregister">
         <div class="logo">Anayasmi</div>
         <div class="input-group">
-            <input type="email" id="email" placeholder="Email">
+            <input name="loginemail" [(ngModel)]="userlogin.email" type="email" id="email" placeholder="Email">
         </div>
         <div class="input-group">
-            <input type="password" id="password" placeholder="Password">
+            <input name="loginpassword" [(ngModel)]="userlogin.password" type="password" id="password" placeholder="Password">
         </div>
         <button class="login-button" (click)="login()">Login</button>
+        <div class="register-link" (click)="showRegister()">Register</div>
     </div>
+</form>
+<form>
+    <div class="login-container" *ngIf="showregister">
+            <div class="logo">Anayasmi</div>
+            <div class="input-group">
+                <input name="name" [(ngModel)]="user.name" type="text" id="name" placeholder="Name">
+            </div>
+            <div name="email" class="input-group">
+                <input name="emailid" [(ngModel)]="user.email" type="email" id="email" placeholder="Email">
+            </div>
+            <div class="input-group">
+                <input name="password" [(ngModel)]="user.password" type="password" id="password" placeholder="Password">
+            </div>
+            <button class="login-button" (click)="register()">Register</button>
+            <div class="register-link" (click)="hideRegister()">Login</div>
+    </div>
+</form>
+
 </body>
 </html>

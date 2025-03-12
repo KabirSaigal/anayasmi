@@ -45,3 +45,14 @@ body {
 .login-button:hover {
     background: #5a75d1;
 }
+.register-link {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.register-link:hover {
+    color: #0056b3;
+}

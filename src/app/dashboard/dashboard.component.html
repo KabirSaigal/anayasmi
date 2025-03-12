@@ -8,21 +8,21 @@
                 <h1>Gamers Cove</h1>
                 <nav>
                     <ul>
-                        <li style="margin-left: 100px;"><a href="#">Home</a></li>
+                        <li class="logout-align"><button class="logout" (click)="logout()">Logout</button></li>
+                        <li><a href="#">Home</a></li>
                         <li><a href="#">Products</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Contact</a></li>
+                        <li *ngIf="isAdmin"><a href="">Admin Controls</a></li>
                         <li>
                             <div class="cart">
                                 <span>{{ccount}}</span>
-                                <img src="assets/cart.png" alt="Shopping Cart">
+                                <img style="cursor: pointer;" (click)="toggleCartPanel()" src="assets/cart.png" alt="Shopping Cart">
                             </div>
                         </li>
                     </ul>
                 </nav>
-                
             </header>
-
             <section class="products">
                 <h2>Our Products</h2>
                 <div class="product-list">
@@ -35,7 +35,7 @@
                     <div class="product-item">
                         <img src="assets/spiderman2.jpg" alt="Spiderman 2">
                         <h3>Spiderman 2</h3>
-                        <p style="text-decoration-line: line-through; text-decoration-style: wavy; text-decoration-thickness: 4px; margin-block-end: 10px;">$49.99</p>
+                        <p style="text-decoration-line: line-through; text-decoration-style: wavy; text-decoration-thickness: 3px; margin-block-end: 10px;">$49.99</p>
                         <p value="39.99" style="margin-block-start: 0; margin-block-end: 5px;">$39.99</p>
                         <button (click)="addToCart(getProduct(2))">Add to Cart</button>
                     </div>
@@ -47,7 +47,18 @@
                     </div>
                 </div>
             </section>
-
+            <div class="cart-panel" [class.open]="isCartPanelOpen" clickOutside (clickOutside) ="toggleCartPanel()">
+                <h2>Cart</h2>
+                <div *ngif="ccount === 0">
+                    <p>Your cart is empty.</p>
+                </div>
+                <div *ngif="ccount > 0">
+                    <div class="cart-item" *ngFor="let item of cart">
+                        <h3>{{ item.name }}</h3>
+                        <p>Price: ${{ item.price }}</p>
+                    </div>
+                </div>
+            </div>
             <footer class="footer">
                 <p>&copy; 2025 Gamers Cove All rights reserved.</p>
             </footer>

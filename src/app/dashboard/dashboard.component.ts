@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
-interface Product
-    {
-      id: number;
-      name: string;
-      price: number;
-    };
+import { Product } from '../models/product.model';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { AuthGuard } from '../auth.guard';
 
 let ccount: number = 0;
 
+
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  standalone: true,
+  imports: [NgFor, CommonModule, NgIf],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -25,9 +24,11 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.updateCartCount();
+    this.checkRole();
   }
 
   logout(): void {
+    localStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
   }
 
@@ -46,6 +47,8 @@ export class DashboardComponent {
     }
   ];
 
+
+  isCartPanelOpen: boolean = false;
   cart: Product[] = [];
 
   addToCart(item:Product): void {
@@ -73,6 +76,31 @@ export class DashboardComponent {
 
   updateCartCount(): void {
     this.ccount = this.cart.length;
+    console.log(this.cart);
+  }
+  
+  goToCart(): void {
+    this.router.navigate(['/cart']);
+  }
+
+  toggleCartPanel(): void {
+    this.isCartPanelOpen = !this.isCartPanelOpen;
+  }
+
+  closeCartPanel(): void {
+    this.isCartPanelOpen = false;
+  }
+
+  isAdmin: boolean = false;
+
+  checkRole() {
+    const localData = localStorage.getItem('currentUser');
+    if (localData != null) {
+      const user = JSON.parse(localData);
+      if (user.role === 'admin') {
+      this.isAdmin = true;
+      }
+    }
   }
 
 }
