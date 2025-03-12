@@ -10,18 +10,23 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div *ngIf="showNav">
+        <div>
+        <nav *ngIf="showNav">
             <a href="#">Home</a>
             <a href="#">Products</a>
             <a href="#">About</a>
             <a href="#">Contact</a>
             <a href="#">Admin Controls</a>
-        </div>
         </nav>
+    </div>
+        <div *ngIf="!showNav" class="menu">
+            <img (click)="showMenu();" style="height: 15px; " src="assets/menu.png">
+        </div>
         <div class="cart">
             <img src="assets/cart.png" alt="Cart">
-            <span>3</span>
+            <div *ngIf="cartIs">
+            <span>{{cartCount}}</span>
+            </div>
         </div>
         <button>Logout</button>
     </header>
