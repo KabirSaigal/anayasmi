@@ -80,9 +80,9 @@ export class LoginComponent {
       const adminExists = users.find((m:any) => m.email === this.userlogin.email && m.password === this.userlogin.password && m.role === 'admin');
       const userExists = users.find((m:any) => m.email === this.userlogin.email && m.password === this.userlogin.password && m.role === 'user');
       if (userExists != undefined || adminExists != undefined) {
-        if (adminExists != undefined) {
+        if (adminExists) {
           this.currentUser = adminExists;
-        } else if (userExists != undefined) {
+        } else if (userExists) {
           this.currentUser = userExists;
         }
         localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
