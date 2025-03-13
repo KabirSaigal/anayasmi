@@ -1,20 +1,28 @@
 import { Component, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthGuard } from '../auth.guard';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [NgIf,FormsModule],
+  imports: [NgIf,ReactiveFormsModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private router: Router) { }
+
+  userForm: FormGroup;
+
+  constructor(private router: Router, private fb : FormBuilder) {
+    this.userForm = this.fb.group({
+      email: ['',[Validators.required, Validators.email]],
+    });
+   }
 
   showregister: boolean = false;
+  showMailErr: boolean = false;
 
   user: any = {
     name: '',
@@ -50,25 +58,30 @@ export class LoginComponent {
   }
 
   register(): void {
-    const isLocalData = localStorage.getItem('users');
-    if(isLocalData != null) {
-      const localArray = JSON.parse(isLocalData);
-      const userExists = localArray.find((m:any) => m.email === this.user.email);
-      if (userExists != undefined) {
-        alert('User already exists');
+
+    if (this.userForm.valid) {
+      const isLocalData = localStorage.getItem('users');
+      if(isLocalData != null) {
+        const localArray = JSON.parse(isLocalData);
+        const userExists = localArray.find((m:any) => m.email === this.user.email);
+        if (userExists != undefined) {
+          alert('User already exists');
+        } else {
+          localArray.push(this.admin);
+          localArray.push(this.user);
+          localStorage.setItem('users', JSON.stringify(localArray));
+          this.hideRegister();
+        }
       } else {
+        const localArray = [];
         localArray.push(this.admin);
         localArray.push(this.user);
         localStorage.setItem('users', JSON.stringify(localArray));
         this.hideRegister();
-      }
-    } else {
-      const localArray = [];
-      localArray.push(this.admin);
-      localArray.push(this.user);
-      localStorage.setItem('users', JSON.stringify(localArray));
-      this.hideRegister();
-  }
+    }
+    } else{
+      this.showMailErr = true;
+    }
 }
 
   showRegister(): void {
